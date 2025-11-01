@@ -31,6 +31,7 @@ class ClienteBase(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class ClienteCreate(ClienteBase):
@@ -51,6 +52,7 @@ class ClienteUpdate(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class ClienteOut(BaseModel):
@@ -62,10 +64,12 @@ class ClienteOut(BaseModel):
     email: Optional[str] = None
     direccion: Optional[str] = None
     usuario: str
+    password: str 
     es_admin: bool
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class ClienteList(BaseModel):

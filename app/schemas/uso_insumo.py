@@ -36,6 +36,7 @@ class UsoInsumoBase(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class UsoInsumoCreate(UsoInsumoBase):
@@ -52,6 +53,7 @@ class UsoInsumoOut(UsoInsumoBase):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class UsoInsumoList(BaseModel):

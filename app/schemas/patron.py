@@ -22,6 +22,7 @@ class PatronBase(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class PatronCreate(PatronBase):
@@ -38,6 +39,7 @@ class PatronUpdate(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class PatronOut(PatronBase):
@@ -47,6 +49,7 @@ class PatronOut(PatronBase):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class PatronList(BaseModel):

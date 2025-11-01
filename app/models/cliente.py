@@ -23,7 +23,8 @@ class Cliente(Model):
     email = CharField(max_length=100, null=True, unique=True)
     direccion = CharField(max_length=255, null=True)
     usuario = CharField(max_length=50, unique=True)
-    password = CharField(max_length=255)
+    password = CharField(max_length=255)  # Mantener por compatibilidad
+    password_hash = CharField(max_length=255, null=True)  # Nuevo campo
     es_admin = BooleanField(default=False)
 
     class Meta:

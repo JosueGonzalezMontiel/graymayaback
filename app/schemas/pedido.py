@@ -6,6 +6,7 @@ modelo para crear pedidos que contiene la lista de items a comprar.
 from typing import List, Optional
 
 from pydantic import BaseModel, Field
+from datetime import datetime
 
 
 class PedidoItem(BaseModel):
@@ -23,6 +24,7 @@ class PedidoItem(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class PedidoCreate(BaseModel):
@@ -44,6 +46,7 @@ class PedidoCreate(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class DetallePedidoOut(BaseModel):
@@ -63,6 +66,7 @@ class DetallePedidoOut(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class PedidoOut(BaseModel):
@@ -70,7 +74,7 @@ class PedidoOut(BaseModel):
 
     pedido_id: int = Field(..., description="Identificador del pedido")
     cliente_id: int
-    fecha_pedido: str
+    fecha_pedido: datetime
     metodo_pago: str
     estatus: str
     monto_total: float
@@ -80,3 +84,38 @@ class PedidoOut(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
+
+
+class DetallePedidoUpdate(BaseModel):
+    """Esquema para actualizar un detalle de pedido."""
+
+    detalle_id: Optional[int]
+    producto_id: int
+    cantidad: int
+    precio_unitario: float
+    colaborador_id: Optional[int]
+    comision_pagada: Optional[bool]
+    notas_personalizacion: Optional[str]
+
+    class Config:
+        orm_mode = True
+        from_attributes = True
+
+
+class PedidoUpdate(BaseModel):
+    """Esquema para actualizar un pedido."""
+
+    pedido_id: Optional[int]
+    cliente_id: int
+    fecha_pedido: Optional[datetime]
+    metodo_pago: str
+    estatus: str
+    monto_total: Optional[float]
+    direccion_entrega: Optional[str]
+    instrucciones_entrega: Optional[str]
+    detalles: List[DetallePedidoUpdate]
+
+    class Config:
+        orm_mode = True
+        from_attributes = True

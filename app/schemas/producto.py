@@ -3,7 +3,7 @@ Esquemas Pydantic para productos. Incluyen todos los campos que
 representa el modelo Peewee salvo los tiempos de creación y el
 identificador en el caso de creación.
 """
-
+import datetime
 from typing import Optional, List
 
 from pydantic import BaseModel, Field
@@ -61,12 +61,16 @@ class ProductoBase(BaseModel):
     sudadera_tipo: Optional[str] = Field(
         None, max_length=20, description="Tipo de sudadera: Cerrada o Con cierre"
     )
+    fecha_creacion: Optional[datetime.datetime] = Field(
+        None, description="Fecha de creación (UTC)"
+    )
     activo: Optional[bool] = Field(
         True, description="Indica si el producto está activo en catálogo"
     )
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class ProductoCreate(ProductoBase):
@@ -96,6 +100,7 @@ class ProductoUpdate(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class ProductoOut(ProductoBase):
@@ -113,6 +118,7 @@ class ProductoOut(ProductoBase):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class ProductoList(BaseModel):

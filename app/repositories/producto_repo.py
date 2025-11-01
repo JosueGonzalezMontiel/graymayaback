@@ -46,7 +46,7 @@ def list_productos(
         query = query.where(
             (Producto.nombre_producto.contains(q))
             | (Producto.tipo_prenda.contains(q))
-            | (Producto.color.contains(q))
+            | (Producto.talla_id.contains(q))
         )
     total = query.count()
     # obtener el campo de ordenamiento, si no existe usar id

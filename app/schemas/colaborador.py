@@ -20,6 +20,7 @@ class ColaboradorBase(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class ColaboradorCreate(ColaboradorBase):
@@ -36,6 +37,7 @@ class ColaboradorUpdate(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class ColaboradorOut(ColaboradorBase):
@@ -45,6 +47,7 @@ class ColaboradorOut(ColaboradorBase):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class ColaboradorList(BaseModel):

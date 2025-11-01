@@ -16,6 +16,7 @@ class TallaBase(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class TallaCreate(TallaBase):
@@ -30,6 +31,7 @@ class TallaUpdate(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class TallaOut(TallaBase):
@@ -39,6 +41,7 @@ class TallaOut(TallaBase):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class TallaList(BaseModel):

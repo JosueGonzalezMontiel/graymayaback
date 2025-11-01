@@ -33,6 +33,7 @@ class CompraInsumoBase(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class CompraInsumoCreate(CompraInsumoBase):
@@ -47,6 +48,7 @@ class CompraInsumoOut(CompraInsumoBase):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class CompraInsumoList(BaseModel):

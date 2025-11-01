@@ -23,6 +23,7 @@ class CategoriaBase(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class CategoriaCreate(CategoriaBase):
@@ -38,6 +39,7 @@ class CategoriaUpdate(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class CategoriaOut(CategoriaBase):
@@ -50,6 +52,7 @@ class CategoriaOut(CategoriaBase):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class CategoriaList(BaseModel):

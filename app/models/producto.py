@@ -42,7 +42,7 @@ class Producto(Model):
     precio = DecimalField(max_digits=10, decimal_places=2, auto_round=True)
     stock = IntegerField(default=0)
     url_imagen = CharField(max_length=255, null=True)
-    categoria = ForeignKeyField(
+    categoria_id = ForeignKeyField(
         Categoria,
         backref="productos",
         column_name="categoria_id",
@@ -50,7 +50,7 @@ class Producto(Model):
         on_delete="RESTRICT",
         on_update="CASCADE",
     )
-    talla = ForeignKeyField(
+    talla_id = ForeignKeyField(
         Talla,
         backref="productos",
         column_name="talla_id",
@@ -62,7 +62,7 @@ class Producto(Model):
     color = CharField(max_length=50, null=True)
     genero = CharField(max_length=10, null=True)  # Hombre, Mujer, Unisex
     tipo_prenda = CharField(max_length=10, null=True)  # BASICA, ESTAMPADA, TIEDYE
-    patron = ForeignKeyField(
+    patron_id = ForeignKeyField(
         Patron,
         backref="productos",
         column_name="patron_id",
@@ -72,7 +72,7 @@ class Producto(Model):
         on_update="CASCADE",
     )
     es_colaboracion = BooleanField(default=False)
-    colaborador = ForeignKeyField(
+    colaborador_id = ForeignKeyField(
         Colaborador,
         backref="productos",
         column_name="colaborador_id",

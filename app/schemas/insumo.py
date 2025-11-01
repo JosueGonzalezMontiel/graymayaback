@@ -34,6 +34,7 @@ class InsumoBase(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class InsumoCreate(InsumoBase):
@@ -54,6 +55,7 @@ class InsumoUpdate(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class InsumoOut(InsumoBase):
@@ -63,6 +65,7 @@ class InsumoOut(InsumoBase):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
 
 class InsumoList(BaseModel):
