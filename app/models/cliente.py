@@ -24,7 +24,7 @@ class Cliente(Model):
     direccion = CharField(max_length=255, null=True)
     usuario = CharField(max_length=50, unique=True)
     password = CharField(max_length=255)  # Mantener por compatibilidad
-    password_hash = CharField(max_length=255, null=True)  # Nuevo campo
+    password_hash = CharField(max_length=255, null=True)  # Nuevo campo, no esta agregado en bd
     es_admin = BooleanField(default=False)
 
     class Meta:

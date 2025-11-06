@@ -32,6 +32,16 @@ router = APIRouter(
     dependencies=[Security(get_api_key)],
 )
 
+def _uso_to_out_dict(uso):
+    d = to_dict(uso)
+    # Normalizar claves foráneas al formato *_id
+    if "insumo" in d and "insumo_id" not in d:
+        d["insumo_id"] = d.pop("insumo")
+    if "producto" in d and "producto_id" not in d:
+        d["producto_id"] = d.pop("producto")
+    if "pedido" in d and "pedido_id" not in d:
+        d["pedido_id"] = d.pop("pedido")
+    return d
 
 @router.post("", response_model=UsoInsumoOut, status_code=201)
 def create_uso_insumo_endpoint(payload: UsoInsumoCreate):
@@ -64,7 +74,7 @@ def create_uso_insumo_endpoint(payload: UsoInsumoCreate):
         "notas": payload.notas,
     }
     uso = create_uso_insumo(data)
-    return to_dict(uso)
+    return _uso_to_out_dict(uso)
 
 
 @router.get("/{uso_id}", response_model=UsoInsumoOut)
@@ -73,7 +83,7 @@ def get_uso_insumo_endpoint(uso_id: int):
     uso = get_uso_insumo(uso_id)
     if not uso:
         raise HTTPException(status_code=404, detail="Uso de insumo no encontrado")
-    return to_dict(uso)
+    return _uso_to_out_dict(uso)
 
 
 @router.get("", response_model=UsoInsumoList)
@@ -105,7 +115,7 @@ def list_usos_insumo_endpoint(
     usos, total = list_usos_insumo(
         q=q, limit=limit, offset=offset, order_by=order_by, desc=desc
     )
-    items = [to_dict(u) for u in usos]
+    items = [_uso_to_out_dict(u) for u in usos]
     return {
         "total": total,
         "limit": limit,

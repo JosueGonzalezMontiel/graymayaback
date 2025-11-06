@@ -24,8 +24,8 @@ class ClienteBase(BaseModel):
     usuario: str = Field(
         ..., max_length=50, description="Nombre de usuario (único)"
     )
-    password: str = Field(
-        ..., min_length=1, description="Contraseña en formato hash"
+    password: Optional[str] = Field(
+        None,  description="Contraseña en formato hash"
     )
     es_admin: Optional[bool] = Field(False, description="Indica si es administrador")
 
@@ -64,7 +64,7 @@ class ClienteOut(BaseModel):
     email: Optional[str] = None
     direccion: Optional[str] = None
     usuario: str
-    password: str 
+    password: Optional[str] = None
     es_admin: bool
 
     class Config:

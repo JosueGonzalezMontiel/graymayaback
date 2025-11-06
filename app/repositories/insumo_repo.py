@@ -34,14 +34,14 @@ def list_insumos(
     - order_by: campo por el que ordenar
     - desc: si se ordena de forma descendente
     """
-    query = Insumo.select()
+    query = Insumo.select()  
     if q:
         query = query.where(
             (Insumo.nombre_insumo.contains(q))
             | (Insumo.descripcion.contains(q))
             | (Insumo.marca.contains(q))
             | (Insumo.color.contains(q))
-        )
+        ) 
     total = query.count()
     field = getattr(Insumo, order_by, Insumo.insumo_id)
     query = query.order_by(field.desc() if desc else field.asc()).limit(limit).offset(offset)

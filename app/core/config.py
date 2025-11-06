@@ -24,7 +24,7 @@ settings = Settings()
 
 # Clave de API para proteger las rutas. En entornos de desarrollo se puede
 # dejar la predeterminada, pero en producción se recomienda modificarla.
-API_KEY = os.getenv("API_KEY", "dev_key_gms_330455")
+API_KEY = os.getenv("API_KEY", "dev_key_gms_330455") 
 
 # Orígenes permitidos para CORS. Se configuran como una lista separada por
 # comas en la variable de entorno CORS_ORIGINS.
