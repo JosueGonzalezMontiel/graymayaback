@@ -20,7 +20,7 @@ def create_compra_insumo(data: dict) -> Optional[CompraInsumo]:
     # Ajustar inventario sumando la cantidad comprada
     ajustar_stock_insumo(compra.insumo.insumo_id, float(compra.cantidad_compra))
     return compra
-
+  
 
 def get_compra_insumo(compra_id: int) -> Optional[CompraInsumo]:
     try:

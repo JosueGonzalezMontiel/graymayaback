@@ -34,6 +34,7 @@ from app.models.compra_insumo import CompraInsumo
 from app.models.uso_insumo import UsoInsumo
 from app.models.pedido import Pedido
 from app.models.detalle_pedido import DetallePedido
+from app.api.routers.admin import router as admin_router
 
 
 app = FastAPI(title="API Tienda de Ropa", version="1.0.0")
@@ -58,6 +59,7 @@ app.include_router(insumos_router)
 app.include_router(compras_insumo_router)
 app.include_router(usos_insumo_router)
 app.include_router(pedidos_router)
+app.include_router(admin_router)
 
 
 @app.on_event("startup")
