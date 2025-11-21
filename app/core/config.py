@@ -5,29 +5,25 @@ inspira en el diseño del repositorio original `tep`.
 """
 
 import os
-from pydantic import BaseModel
+from dotenv import load_dotenv
 
+# Cargar variables del archivo .env
+load_dotenv()
 
-class Settings(BaseModel):
-    """Almacena los parámetros de la base de datos. Se pueden
-    sobreescribir mediante variables de entorno.
-    """
-
-    DB_NAME: str = os.getenv("DB_NAME", "graymayabd")
-    DB_USER: str = os.getenv("DB_USER", "root")
-    DB_PASSWORD: str = os.getenv("DB_PASSWORD", "")
+class Settings:
+    # Sin valores por defecto sensibles
     DB_HOST: str = os.getenv("DB_HOST", "localhost")
-    DB_PORT: int = int(os.getenv("DB_PORT", 3306))
+    DB_PORT: int = int(os.getenv("DB_PORT", "3306"))
+    DB_NAME: str = os.getenv("DB_NAME")
+    DB_USER: str = os.getenv("DB_USER")
+    DB_PASSWORD: str = os.getenv("DB_PASSWORD")
+    API_KEY: str = os.getenv("API_KEY")
+    environment: str = os.getenv("ENVIRONMENT", "development")
+    debug: bool = os.getenv("DEBUG", "False").lower() == "true"
+    
 
 
 settings = Settings()
 
-# Clave de API para proteger las rutas. En entornos de desarrollo se puede
-# dejar la predeterminada, pero en producción se recomienda modificarla.
-API_KEY = os.getenv("API_KEY", "dev_key_gms_330455") 
-
-# Orígenes permitidos para CORS. Se configuran como una lista separada por
-# comas en la variable de entorno CORS_ORIGINS.
-CORS_ORIGINS = os.getenv(
-    "CORS_ORIGINS", "http://localhost,http://localhost:5173,http://localhost:3000"
-).split(",")
+# Exportar para compatibilidad con deps.py
+API_KEY = settings.API_KEY  # ✅ Ahora deps.py puede importarlo

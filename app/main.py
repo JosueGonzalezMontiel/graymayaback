@@ -21,7 +21,7 @@ from app.api.routers.insumos import router as insumos_router
 from app.api.routers.compras_insumo import router as compras_insumo_router
 from app.api.routers.usos_insumo import router as usos_insumo_router
 from app.api.routers.pedidos import router as pedidos_router
-from app.core.config import CORS_ORIGINS
+
 from app.db.peewee_conn import db_session, database
 from app.models.categoria import Categoria
 from app.models.talla import Talla
@@ -39,10 +39,17 @@ from app.api.routers.admin import router as admin_router
 
 app = FastAPI(title="API Tienda de Ropa", version="1.0.0")
 
+origins = [
+    "https://graymaya.shop",
+    "http://graymaya.shop",
+    "http://localhost",  
+]
+
+
 # Configurar CORS para permitir peticiones desde los orígenes definidos en variables de entorno
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=CORS_ORIGINS,
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

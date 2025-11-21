@@ -1,0 +1,30 @@
+version: '3.8'  # versión de esquema de Compose
+
+services:
+  api:
+    build: .  # construye la imagen usando el Dockerfile en este directorio
+    container_name: graymback_app  # nombre opcional del contenedor
+    env_file:
+      - .env   # carga las variables de entorno definidas en el archivo .env
+    ports:
+      - "127.0.0.1:8000:8000"  # publica el puerto 8000 solo en localhost del servidor
+    depends_on:
+      - db   # asegura que el servicio db se inicie antes (no espera a que esté listo)
+    restart: unless-stopped  # opcional: para que el contenedor se reinicie si falla
+
+  db:
+    image: mariadb:10.5   # usa una imagen oficial de MariaDB (versión 10.5 por ej.)
+    container_name: gm_bd1
+    environment:
+      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MARIADB_DATABASE=${DB_NAME}
+      - MARIADB_USER=${DB_USER}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql  # volumen nombrado para persistencia de datos
+    ports:
+      - "127.0.0.1:3306:3306"    # opcional: expone MySQL en el host (podrías restringirlo a localhost)
+    restart: unless-stopped
+
+volumes:
+  db_data:
