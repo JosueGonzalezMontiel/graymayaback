@@ -19,7 +19,7 @@ class Settings:
     DB_PASSWORD: str = os.getenv("DB_PASSWORD")
     API_KEY: str = os.getenv("API_KEY")
     environment: str = os.getenv("ENVIRONMENT", "development")
-    debug: bool = os.getenv("DEBUG", "False").lower() == "true"
+    debug: bool = os.getenv("DEBUG", "False").lower() == "false"
     
 
 
